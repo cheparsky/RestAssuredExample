@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import cheparsky.cucsteps.SeleniumSteps;
+import cheparsky.cucumberSteps.SeleniumSteps;
 
 public class LoginPage {
 
@@ -29,7 +29,7 @@ public class LoginPage {
     public static String iLogin;
     public static String iPass;
 
-    // Definiujemy akcje, ktora odpowiada za wpisywanie loginu
+    // Definiujemy akcje, ktora odpowiada za wpaymentywanie loginu
     public static void loginpageLoginI (String login){
         MyDriver.InputData(loginpageLoginI,
                 login,
@@ -37,7 +37,7 @@ public class LoginPage {
                 "Strona logowania nie zawiera inputu 'Identyfikator'.");
     }
 
-    // Definiujemy akcje, ktora odpowiada za wpisywanie hasla
+    // Definiujemy akcje, ktora odpowiada za wpaymentywanie hasla
     public static void loginpageTokenI (String pass){
         MyDriver.InputData(loginpageTokenI,
                 pass,

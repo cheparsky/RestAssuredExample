@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import cheparsky.cucsteps.SeleniumSteps;
+import cheparsky.cucumberSteps.SeleniumSteps;
 
 public class  AuthorizationPage {
 
@@ -26,7 +26,7 @@ public class  AuthorizationPage {
     public static WebElement authorizationpageSenderAccountDD;
 
     @FindBy(css = ".style-select-header-ng4.grouped-drop-right")
-    public static WebElement authorizationpageListOfAisAccountsDD;
+    public static WebElement authorizationpageListOfAccountAccountsDD;
 //*[@id="cmn-dropdown-1"]/div
 
     @FindBy(xpath = "//*[@id='cmn-dropdown-2']/div/div[2]/ul/li[1]")
@@ -86,7 +86,7 @@ public class  AuthorizationPage {
         AuthorizationPage.authorizationpageDiscardRejectB();
     }
 
-    // Definiujemy akcje, ktora odpowiada za wpisywanie hasla
+    // Definiujemy akcje, ktora odpowiada za wpaymentywanie hasla
     public static void authorizationpageTokenI (String pass){
         MyDriver.InputData(authorizationpageTokenI,
                         pass,
@@ -115,7 +115,7 @@ public class  AuthorizationPage {
     }
 
     public static void authorizationpageListOfAccountsDD (){
-        MyDriver.ButtonTypical(AuthorizationPage.authorizationpageListOfAisAccountsDD,
+        MyDriver.ButtonTypical(AuthorizationPage.authorizationpageListOfAccountAccountsDD,
                 "Kliknięcie w listę z rachunkami udalo sie.",
                 "Strona autoruzacji: lista z rachunkami jest nie klikalna.",
                 "Strona autoruzacji nie zawiera listy z rachunkami.");

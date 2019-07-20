@@ -39,7 +39,7 @@ public class jsonHelper {
             privilegeListString = privilegeListString + method;
         } else {
             if(typScenariusza.equals("Szczegóły rachunku") || typScenariusza.equals("Listę transakcji") || typScenariusza.equals("Szczegóły transakcji")){
-                privilegeListString = AspspJsonTemplates.accountNumber;
+                privilegeListString = ConsentJsonTemplates.accountNumber;
                 privilegeListString = privilegeListString + method;
             } else{
                 privilegeListString = method;
@@ -56,26 +56,26 @@ public class jsonHelper {
     public static void buildBodyForConsent() {
         //System.out.println("{"+privilegeListString+"}");
         privilegeList.put(new JSONObject("{" + privilegeListString + "}"));
-        consentObject = new JSONObject(AspspJsonTemplates.consentBasis);
+        consentObject = new JSONObject(ConsentJsonTemplates.consentBasis);
         String path = "consentScope.scopeDetails";
         String key = "privilegeList";
         String[] elementOfPath = path.split("\\.");
         mainMethodObject = jsonHelper.putElementOfArrayToJson(consentObject, elementOfPath, key, privilegeList, 0);
     }
 
-    public static void buildBodyForPis(String typMethodyPis) {
+    public static void buildBodyForPayment(String typMethodyPayment) {
         mainMethodObject = new JSONObject("{" + privilegeListString + "}");
-        if (typMethodyPis.equals("domestic")) {
-            mainMethodObject = (JSONObject) mainMethodObject.get("pisDomestic");
+        if (typMethodyPayment.equals("domestic")) {
+            mainMethodObject = (JSONObject) mainMethodObject.get("paymentDomestic");
             mainMethodObject = (JSONObject) mainMethodObject.get("domesticPaymentRequest");
-        } else if (typMethodyPis.equals("tax")) {
-            mainMethodObject = (JSONObject) mainMethodObject.get("pisTax");
+        } else if (typMethodyPayment.equals("tax")) {
+            mainMethodObject = (JSONObject) mainMethodObject.get("paymentTax");
             mainMethodObject = (JSONObject) mainMethodObject.get("taxPaymentRequest");
-        } else if (typMethodyPis.equals("eea")) {
-            mainMethodObject = (JSONObject) mainMethodObject.get("pisEea");
+        } else if (typMethodyPayment.equals("eea")) {
+            mainMethodObject = (JSONObject) mainMethodObject.get("paymentEea");
             mainMethodObject = (JSONObject) mainMethodObject.get("eeaPaymentRequest");
-        } else if (typMethodyPis.equals("non-eea")) {
-            mainMethodObject = (JSONObject) mainMethodObject.get("pisNonEea");
+        } else if (typMethodyPayment.equals("non-eea")) {
+            mainMethodObject = (JSONObject) mainMethodObject.get("paymentNonEea");
             mainMethodObject = (JSONObject) mainMethodObject.get("nonEeaPaymentRequest");
         }
 
@@ -84,7 +84,7 @@ public class jsonHelper {
     public static void buildBodyForPatch() {
         //System.out.println("\"accountNumber\": \"senderAccountNumber\",\n" +"{"+privilegeListString+"}");
         privilegeList.put(new JSONObject("{" + "\"accountNumber\": \"senderAccountNumber\",\n" + privilegeListString + "}"));
-        patchObject = new JSONObject(AspspJsonTemplates.patchBasis);
+        patchObject = new JSONObject(ConsentJsonTemplates.patchBasis);
         String path = "consentScope.scopeDetails";
         String key = "privilegeList";
         String[] elementOfPath = path.split("\\.");
@@ -183,20 +183,20 @@ public class jsonHelper {
         String key = "privilegeList";
         String value = "";
 
-        jsonHelper.parseJsonFromFile("psd2JsonFiles/consentDomesticTemplate.json");
+        jsonHelper.parseJsonFromFile("restJsonFiles/consentDomesticTemplate.json");
 
         String[] elementOfPath = path.split("\\.");
         JSONObject jsonObjectf = jsonHelper.putKeyAndValueToJson(mainMethodObject, elementOfPath, key, value, 0);
         System.out.println(jsonObjectf);*/
 
-        JSONObject jsonObjectt = new JSONObject(AspspJsonTemplates.consentBasis);
+        JSONObject jsonObjectt = new JSONObject(ConsentJsonTemplates.consentBasis);
         String path = "consentScope.scopeDetails";
         String key = "privilegeList";
 
         String[] elementOfPath = path.split("\\.");
         JSONArray ja = new JSONArray();
-        ja.put(new JSONObject(AspspJsonTemplates.ais_accounts));
-        ja.put(new JSONObject(AspspJsonTemplates.aisAccountDetails));
+        ja.put(new JSONObject(ConsentJsonTemplates.account_accounts));
+        ja.put(new JSONObject(ConsentJsonTemplates.accountAccountDetails));
         JSONObject jsonObjectf = jsonHelper.putElementOfArrayToJson(jsonObjectt, elementOfPath, key, ja, 0);
         //System.out.println(jsonObjectf);
 
